@@ -39,8 +39,8 @@ You can configure a default Coordinate Reference System by passing it in the con
 
 ```java
     CoordinateReferenceSystem<G2D> crs=...;
-    ObjectMapper mapper=new ObjectMapper(crs);
-    mapper.registerModule(new GeolatteGeomModule());
+    ObjectMapper mapper=new ObjectMapper();
+    mapper.registerModule(new GeolatteGeomModule(crs));
 ```
 
 If no default is specified in the constructor, the default will be set to `WGS84`.
@@ -63,7 +63,7 @@ You can set a feature flag after creation of the `GeolatteGeomModule`:
 ```
 
 The following settings are currently supported:
-- `IGNORE_CRS`: ignore the`crs` element in the GeoJson `Geometry` (if any) and always use the default coordinate (default: `false`) 
+- `IGNORE_CRS`: ignore the `crs` element in the GeoJson `Geometry` (if any) and always use the default coordinate system (default: `false`) 
 - `SUPPRESS_CRS_SERIALIZATION`: do not serialize a `crs` object in `Geometry` GeoJsons (default: `false`)
 - `SERIALIZE_CRS_AS_URN`: serialize `crs` as a URN (default: `false`)
 
